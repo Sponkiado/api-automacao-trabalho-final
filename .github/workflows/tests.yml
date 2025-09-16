@@ -1,0 +1,50 @@
+name: Testes Automatizados
+
+on:
+  push:
+    branches: 
+      - main
+      - feature/*
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Iniciar servidor
+        run: |
+          nohup npm start &
+          sleep 10
+
+      - name: Rodar testes External, Controller e GraphQL
+        run: |
+          npm run test.external
+          npm run test.controller
+          npm run test.graphql
+
+      - name: Gerar relatório unificado (mochawesome)
+        run: |
+          npx mochawesome-merge ./mochawesome-report/*.json > mochawesome.json
+          npx marge mochawesome.json --reportDir ./mochawesome-report --reportTitle "Relatório de Testes"
+
+      - name: Publicar relatório como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Relatorio-de-Testes
+          path: ./mochawesome-report

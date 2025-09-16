@@ -1,0 +1,32 @@
+{
+  "name": "api-trabalho-final",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha \"api/tests/**/*.test.js\" --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=all-tests,json=true",
+    "test.external": "mocha \"api/tests/external/**/*.test.js\" --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=external-tests,json=true",
+    "test.controller": "mocha \"api/tests/controllers/**/*.test.js\" --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=controller-tests,json=true",
+    "test.graphql": "mocha \"api/tests/external/graphql.test.js\" --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=graphql-tests,json=true"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "express": "^4.21.2",
+    "graphql": "^16.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^6.0.1",
+    "mocha": "^11.7.2",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "sinon": "^21.0.0",
+    "supertest": "^7.1.4"
+  }
+}
