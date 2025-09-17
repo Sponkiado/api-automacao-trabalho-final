@@ -16,7 +16,7 @@ Inclui testes automatizados com **Mocha, Chai, Supertest e Sinon**.
 
 Para clonar o repositório:
 ```
-git clone https://github.com/Sponkiado/api-trabalho-final.git
+git clone https://github.com/Sponkiado/api-automacao-trabalho-final.git
 ```
 
 ## 2. Instalar dependências
